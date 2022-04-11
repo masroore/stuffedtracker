@@ -1,5 +1,3 @@
-<?
-$Lang['Title']="Paid traffic";
+<?php
 
-
-?>
+$Lang['Title'] = 'Paid traffic';

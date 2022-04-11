@@ -1,4 +1,5 @@
 <?php
+
 //
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
@@ -17,28 +18,29 @@
 // |          Jon Parise <jon@php.net>                                    |
 // +----------------------------------------------------------------------+
 
-require_once(SYS.'/system/class/email/mail.php');
+require_once SYS . '/system/class/email/mail.php';
 
 /**
  * SMTP implementation of the PEAR Mail:: interface. Requires the PEAR
  * Net_SMTP:: class.
- * @access public
- * @package Mail
+ *
  * @version $Revision: 1.4 $
  */
-class Mail_smtp extends Mail {
-
+class mail_smtp extends Mail
+{
     /**
      * The SMTP host to connect to.
+     *
      * @var string
      */
-    var $host = 'localhost';
+    public $host = 'localhost';
 
     /**
      * The port the SMTP server is on.
-     * @var integer
+     *
+     * @var int
      */
-    var $port = 25;
+    public $port = 25;
 
     /**
      * Should SMTP authentication be used?
@@ -51,19 +53,21 @@ class Mail_smtp extends Mail {
      *
      * @var mixed
      */
-    var $auth = false;
+    public $auth = false;
 
     /**
      * The username to use if the SMTP server requires authentication.
+     *
      * @var string
      */
-    var $username = '';
+    public $username = '';
 
     /**
      * The password to use if the SMTP server requires authentication.
+     *
      * @var string
      */
-    var $password = '';
+    public $password = '';
 
     /**
      * Hostname or domain that will be sent to the remote SMTP server in the
@@ -71,7 +75,7 @@ class Mail_smtp extends Mail {
      *
      * @var string
      */
-    var $localhost = 'localhost';
+    public $localhost = 'localhost';
 
     /**
      * Constructor.
@@ -88,18 +92,29 @@ class Mail_smtp extends Mail {
      * If a parameter is present in the $params array, it replaces the
      * default.
      *
-     * @param array Hash containing any parameters different from the
-     *              defaults.
-     * @access public
+     * @param array hash containing any parameters different from the
+     *              defaults
      */
-    function Mail_smtp($params)
+    public function __construct($params)
     {
-        if (isset($params['host'])) $this->host = $params['host'];
-        if (isset($params['port'])) $this->port = $params['port'];
-        if (isset($params['auth'])) $this->auth = $params['auth'];
-        if (isset($params['username'])) $this->username = $params['username'];
-        if (isset($params['password'])) $this->password = $params['password'];
-        if (isset($params['localhost'])) $this->localhost = $params['localhost'];
+        if (isset($params['host'])) {
+            $this->host = $params['host'];
+        }
+        if (isset($params['port'])) {
+            $this->port = $params['port'];
+        }
+        if (isset($params['auth'])) {
+            $this->auth = $params['auth'];
+        }
+        if (isset($params['username'])) {
+            $this->username = $params['username'];
+        }
+        if (isset($params['password'])) {
+            $this->password = $params['password'];
+        }
+        if (isset($params['localhost'])) {
+            $this->localhost = $params['localhost'];
+        }
     }
 
     /**
@@ -110,26 +125,23 @@ class Mail_smtp extends Mail {
      *              each RFC822 valid. This may contain recipients not
      *              specified in the headers, for Bcc:, resending
      *              messages, etc.
-     *
      * @param array $headers The array of headers to send with the mail, in an
      *              associative array, where the array key is the
      *              header name (e.g., 'Subject'), and the array value
      *              is the header value (e.g., 'test'). The header
      *              produced from those values would be 'Subject:
      *              test'.
+     * @param string $body the full text of the message body, including any
+     *               Mime parts, etc
      *
-     * @param string $body The full text of the message body, including any
-     *               Mime parts, etc.
-     *
-     * @return mixed Returns true on success, or a PEAR_Error
+     * @return mixed returns true on success, or a PEAR_Error
      *               containing a descriptive error message on
-     *               failure.
-     * @access public
+     *               failure
      */
-    function send($recipients, $headers, $body)
+    public function send($recipients, $headers, $body)
     {
-				require_once(SYS.'/system/class/email/Net/smtp.php');
-							
+        require_once SYS . '/system/class/email/Net/smtp.php';
+
         if (!($smtp = new Net_SMTP($this->host, $this->port, $this->localhost))) {
             return new PEAR_Error('unable to instantiate Net_SMTP object');
         }
@@ -142,13 +154,16 @@ class Mail_smtp extends Mail {
         if ($this->auth) {
             $method = is_string($this->auth) ? $this->auth : '';
 
-            if (PEAR::isError($smtp->auth($this->username, $this->password,
-                              $method))) {
+            if (PEAR::isError($smtp->auth(
+                $this->username,
+                $this->password,
+                $method
+            ))) {
                 return new PEAR_Error('unable to authenticate to smtp server');
             }
         }
 
-        list($from, $text_headers) = $this->prepareHeaders($headers);
+        [$from, $text_headers] = $this->prepareHeaders($headers);
 
         /*
          * Since few MTAs are going to allow this header to be forged unless
@@ -168,7 +183,7 @@ class Mail_smtp extends Mail {
         }
 
         $recipients = $this->parseRecipients($recipients);
-        foreach($recipients as $recipient) {
+        foreach ($recipients as $recipient) {
             if (PEAR::isError($res = $smtp->rcptTo($recipient))) {
                 return new PEAR_Error('unable to add recipient [' .
                                       $recipient . ']: ' . $res->getMessage());
@@ -179,8 +194,7 @@ class Mail_smtp extends Mail {
             return new PEAR_Error('unable to send data');
         }
         $smtp->disconnect();
+
         return true;
     }
 }
-
-?>

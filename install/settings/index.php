@@ -15,57 +15,57 @@ function GoToUpdate()
 <table  class=FormTable>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['Host']?> *
+<?php echo $Lang['Host']?> *
 </td><td class=FormRightTd>
-<input type=text  name="DbHost" value="<?=$DbHost?>">
+<input type=text  name="DbHost" value="<?php echo $DbHost?>">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['Port']?> 
+<?php echo $Lang['Port']?>
 </td><td class=FormRightTd>
-<input type=text  name="DbPort" value="<?=$DbPort?>">
+<input type=text  name="DbPort" value="<?php echo $DbPort?>">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['Db']?> *
+<?php echo $Lang['Db']?> *
 </td><td class=FormRightTd>
-<input type=text  name="DbName" value="<?=$DbName?>">
+<input type=text  name="DbName" value="<?php echo $DbName?>">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['DbUsername']?> 
+<?php echo $Lang['DbUsername']?>
 </td><td class=FormRightTd>
-<input type=text  name="DbUser" value="<?=$DbUser?>">
+<input type=text  name="DbUser" value="<?php echo $DbUser?>">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['DbPass']?> 
+<?php echo $Lang['DbPass']?>
 </td><td class=FormRightTd>
-<input type=text  name="DbPass" value="<?=$DbPass?>">
-</td></tr>
-
-<tr><td colspan=2></td></tr>
-
-
-<tr><td class=FormLeftTd>
-<?=$Lang['TablePfx']?> *
-</td><td class=FormRightTd>
-<input type=text  name="DbPref" value="<?=$DbPref?>">
-</td></tr>
-
-<tr><td class=FormLeftTd>
-<?=$Lang['UseModR-2']?>
-</td><td class=FormRightTd>
-<input type=checkbox  name="UseModR" <?=(($DisableModR)?"disabled":"")?> value="1" <?=(($UseModR)?"checked":"")?>>
+<input type=text  name="DbPass" value="<?php echo $DbPass?>">
 </td></tr>
 
 <tr><td colspan=2></td></tr>
 
 
 <tr><td class=FormLeftTd>
-<?=$Lang['SendUseInfo-2']?>
+<?php echo $Lang['TablePfx']?> *
 </td><td class=FormRightTd>
-<input type=checkbox  name="SendUsage" value="1" <?=(($SendUsage)?"checked":"")?>>
+<input type=text  name="DbPref" value="<?php echo $DbPref?>">
+</td></tr>
+
+<tr><td class=FormLeftTd>
+<?php echo $Lang['UseModR-2']?>
+</td><td class=FormRightTd>
+<input type=checkbox  name="UseModR" <?php echo (($DisableModR) ? 'disabled' : '')?> value="1" <?php echo (($UseModR) ? 'checked' : '')?>>
+</td></tr>
+
+<tr><td colspan=2></td></tr>
+
+
+<tr><td class=FormLeftTd>
+<?php echo $Lang['SendUseInfo-2']?>
+</td><td class=FormRightTd>
+<input type=checkbox  name="SendUsage" value="1" <?php echo (($SendUsage) ? 'checked' : '')?>>
 </td></tr>
 
 
@@ -73,7 +73,7 @@ function GoToUpdate()
 <tr><td class=FormLeftTd>
 
 </td><td class=FormRightTd>
-<input type=button value="<?=$Lang['RepairConf']?>" onclick="GoToUpdate();">
+<input type=button value="<?php echo $Lang['RepairConf']?>" onclick="GoToUpdate();">
 </td></tr>
 
 <?}?>

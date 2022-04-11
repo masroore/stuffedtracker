@@ -1,3 +1,3 @@
 <div style="padding-left:10px;">
-<p><B><?=$Lang['NoRecordsFound']?></B></p>
+<p><B><?php echo $Lang['NoRecordsFound']?></B></p>
 </div>

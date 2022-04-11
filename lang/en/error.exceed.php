@@ -1,5 +1,4 @@
-<?
-$Lang['ErrorName']="Access denied";
-$Lang['TrialExceed']="Trial version expired.";
+<?php
 
-?>
+$Lang['ErrorName'] = 'Access denied';
+$Lang['TrialExceed'] = 'Trial version expired.';

@@ -5,8 +5,10 @@
 
 var IdsArr = new Array;
 
-<?
-for ($i=0;$i<count($IdsArr);$i++) echo "IdsArr[$i]=".$IdsArr[$i].";\n";
+<?php
+for ($i = 0; $i < count($IdsArr); ++$i) {
+    echo "IdsArr[$i]=" . $IdsArr[$i] . ";\n";
+}
 ?>
 
 
@@ -32,7 +34,7 @@ function SelectedAction(sBox)
 	if (sBox.value=="GrpMove") {
 		GrpBox.style.display="";
 		return false;
-	}	
+	}
 	GrpBox.style.display="none";
 	if (sBox.value=='') return false;
 	document.SelectForm.Mode.value=sBox.value;
@@ -57,14 +59,14 @@ function MoveToGrp(sBox)
 
 <table width=100% cellpadding=0 cellspacing=0 border=0><tr><td width=50%>
 <?GetFORM();?>
-<B style="color:#000000"><?=$Lang['Grp']?></B> <?=GenSelect($Grps, "GrpId", $GrpId);?> <input type=submit value="<?=$Lang['Choose']?>">
+<B style="color:#000000"><?php echo $Lang['Grp']?></B> <?php echo GenSelect($Grps, 'GrpId', $GrpId); ?> <input type=submit value="<?php echo $Lang['Choose']?>">
 </form>
 </td><td width=50% align=right>
 <?if (!$GrpId) {?>
 
 <?GetFORM();?>
 <input type=hidden name=UpdateGrp value="1">
-<input type=submit value="<?=$Lang['Update']?>">
+<input type=submit value="<?php echo $Lang['Update']?>">
 </form>
 <?}?>
 
@@ -74,42 +76,42 @@ function MoveToGrp(sBox)
 
 
 <?GetFORM(false, false, false, "name=\"SelectForm\"");?>
-<input type=hidden name=Srch value="<?=htmlspecialchars($Srch)?>">
-<input type=hidden name=GrpId value="<?=htmlspecialchars($GrpId)?>">
-<input type=hidden name=Mode value="<?=$Mode?>">
+<input type=hidden name=Srch value="<?php echo htmlspecialchars($Srch)?>">
+<input type=hidden name=GrpId value="<?php echo htmlspecialchars($GrpId)?>">
+<input type=hidden name=Mode value="<?php echo $Mode?>">
 
 <tr><td width=50%>
 <?if (count($HostArr)>0){?>
 <p>
 <a href="javascript:;" onclick="SelectAll();">
-<IMG SRC="<?=FileLink("images/icon_select_all.gif");?>" WIDTH="11" HEIGHT="11" BORDER="0" ALT="" title="<?=$Lang['ChooseAll']?>">
-&nbsp;<?=$Lang['SelectAll']?></a>&nbsp;
+<IMG SRC="<?php echo FileLink('images/icon_select_all.gif'); ?>" WIDTH="11" HEIGHT="11" BORDER="0" ALT="" title="<?php echo $Lang['ChooseAll']?>">
+&nbsp;<?php echo $Lang['SelectAll']?></a>&nbsp;
 <a href="javascript:;" onclick="UnSelectAll();">
-<IMG SRC="<?=FileLink("images/icon_unselect_all.gif");?>" WIDTH="11" HEIGHT="11" BORDER="0" ALT="" title="<?=$Lang['UnselectAll']?>">
-&nbsp;<?=$Lang['UnselectAll']?></a>
+<IMG SRC="<?php echo FileLink('images/icon_unselect_all.gif'); ?>" WIDTH="11" HEIGHT="11" BORDER="0" ALT="" title="<?php echo $Lang['UnselectAll']?>">
+&nbsp;<?php echo $Lang['UnselectAll']?></a>
 </p>
 <?}?>
 </td><td width=50% align=right>
-<input type=text size=30 name=Srch value="<?=htmlspecialchars($Srch)?>">&nbsp;<input type=submit value="<?=$Lang['Filter']?>">
+<input type=text size=30 name=Srch value="<?php echo htmlspecialchars($Srch)?>">&nbsp;<input type=submit value="<?php echo $Lang['Filter']?>">
 
 </td></tr>
 
 
 <tr><td width=100% colspan=2>
-<?if (count($HostArr)>0){?><?=$Lang['Operations']?>: <?}?>
+<?if (count($HostArr)>0){?><?php echo $Lang['Operations']?>: <?}?>
 
 	<?if (Count($HostArr)>0) {?>
 	<select onchange="SelectedAction(this);" name="Mode" style="font-size:9px;">
 	<option></option>
-	<option value="Delete"><?=$Lang['Delete']?></option>
-	<option value="GrpMove"><?=$Lang['PutIntoGrp']?></option>
-	<?if ($GrpId>0) {?><option value="GrpFree"><?=$Lang['GetOutFromGrp']?></option><?}?>
-	<option value="Ignore"><?=$Lang['SetIgnore']?></option>
+	<option value="Delete"><?php echo $Lang['Delete']?></option>
+	<option value="GrpMove"><?php echo $Lang['PutIntoGrp']?></option>
+	<?if ($GrpId>0) {?><option value="GrpFree"><?php echo $Lang['GetOutFromGrp']?></option><?}?>
+	<option value="Ignore"><?php echo $Lang['SetIgnore']?></option>
 	</select>
 
 	<select id="GrpMove" name="GrpMove" style="display:none;font-size:9px;" onchange="MoveToGrp(this)">
 	<?for ($i=0;$i<count($Grps);$i++) {?>
-		<option value="<?=$Grps[$i]['Value']?>"><?=$Grps[$i]['Name']?></option>
+		<option value="<?php echo $Grps[$i]['Value']?>"><?php echo $Grps[$i]['Name']?></option>
 	<?}?>
 	</select>
 	<?}?>
@@ -118,7 +120,7 @@ function MoveToGrp(sBox)
 </table>
 </div>
 
-<IMG SRC="<?=FileLink("images/0.gif");?>" WIDTH="1" HEIGHT="10" BORDER="0" ALT="">
+<IMG SRC="<?php echo FileLink('images/0.gif'); ?>" WIDTH="1" HEIGHT="10" BORDER="0" ALT="">
 
 
 
@@ -130,10 +132,10 @@ function MoveToGrp(sBox)
 	$Row=$HostArr[$i];?>
 
 	<tr>
-	<td class=ListRowLeft><input type=checkbox ID="SelHost[<?=$Row->ID?>]" name="SelHost[<?=$Row->ID?>]" value=1></td>
-	<td class="<?=$Row->_STYLE?>" colspan=2>
-	<B><a href="<?= getURL("natural_host", "Mode=Host&EditId=".$Row->ID)?>"><?=$Row->HOST?></a>
-	&nbsp;<?=($Row->KEY_VAR)?"?".$Row->KEY_VAR:"";?></B>
+	<td class=ListRowLeft><input type=checkbox ID="SelHost[<?php echo $Row->ID?>]" name="SelHost[<?php echo $Row->ID?>]" value=1></td>
+	<td class="<?php echo $Row->_STYLE?>" colspan=2>
+	<B><a href="<?php echo getURL('natural_host', 'Mode=Host&EditId=' . $Row->ID)?>"><?php echo $Row->HOST?></a>
+	&nbsp;<?php echo ($Row->KEY_VAR) ? '?' . $Row->KEY_VAR : ''; ?></B>
 	<?if ($Row->BAN==1) echo "<br>".$Lang['Ignored'];?>
 	</td></tr>
 

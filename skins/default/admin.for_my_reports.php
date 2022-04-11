@@ -17,34 +17,34 @@
 
 	<?if ($Row->NewComp&&$nsUser->ADMIN) {?>
 		<tr><td colspan=3 class=ListRowRight style="border-bottom-width:2px;">
-		<span class=MyTrackerHeader><?=$Row->COMP_NAME?></span>
+		<span class=MyTrackerHeader><?php echo $Row->COMP_NAME?></span>
 		</td></tr>
 	<?}?>
 
 	<tr>
 	<?if ($EditId!=$Row->ID) {?>
-	<td class=<?=$Row->_STYLE?>>
+	<td class=<?php echo $Row->_STYLE?>>
 
 	<table width=100% cellpadding=0 cellspacing=0 border=0>
 	<tr>
 
 	<td width=25 nowrap>
 	<?if (!ValidId($EditId)&&!ValidId($Row->WATCH_ID)) {?>
-		<input type=checkbox value=1 name="AddToMy[<?=$Row->ID?>]">
+		<input type=checkbox value=1 name="AddToMy[<?php echo $Row->ID?>]">
 	<?}?>
 	</td>
 	<td width=100%>
-	<a href="<?=getURL($Row->Addr, "CpId=".$Row->CP_ID."&ConstId=".$Row->ID, "report")?>">
-	<B><span style="font-size:10px;color:999999">(<?=$Row->CONST_TYPE?>)</span> 
-	<?=$Row->NAME?></B>
+	<a href="<?php echo getURL($Row->Addr, 'CpId=' . $Row->CP_ID . '&ConstId=' . $Row->ID, 'report')?>">
+	<B><span style="font-size:10px;color:999999">(<?php echo $Row->CONST_TYPE?>)</span>
+	<?php echo $Row->NAME?></B>
 	</a>
 	</td>
 	<td>
-	<?
-	$nsButtons->Add("edit.gif", $Lang['Edit'], getURL("my_tracker", "Mode=reports&EditId=".$Row->ID));
-	$nsButtons->Add("delete.gif", $Lang['Delete'], getURL("my_tracker", "Mode=reports&DeleteId=".$Row->ID), $Lang['YouSure']);
-	$nsButtons->Dump();
-	?>
+	<?php
+    $nsButtons->Add('edit.gif', $Lang['Edit'], getURL('my_tracker', 'Mode=reports&EditId=' . $Row->ID));
+    $nsButtons->Add('delete.gif', $Lang['Delete'], getURL('my_tracker', 'Mode=reports&DeleteId=' . $Row->ID), $Lang['YouSure']);
+    $nsButtons->Dump();
+    ?>
 	</td>
 	</tr></table>
 
@@ -54,12 +54,12 @@
 
 
 
-	<td class="<?=$Row->_STYLE?>" style="padding-left:35px;" >
+	<td class="<?php echo $Row->_STYLE?>" style="padding-left:35px;" >
 	<?getFORM();?>
-	<input type=hidden name="EditId" value="<?=$EditId?>">
+	<input type=hidden name="EditId" value="<?php echo $EditId?>">
 	<input type=hidden name="Mode" value="reports">
-	<input type=text size=50 name="EditArr[Name]" value="<?=htmlspecialchars(stripslashes($Row->NAME))?>"><br>
-	<input type=submit value="<?=$Lang['Save']?>">
+	<input type=text size=50 name="EditArr[Name]" value="<?php echo htmlspecialchars(stripslashes($Row->NAME))?>"><br>
+	<input type=submit value="<?php echo $Lang['Save']?>">
 	</form>
 	</td>
 
@@ -76,7 +76,7 @@
 <?if (!ValidId($EditId)&&!$NoAdd) {?>
 
 <tr><td class=ReportSimpleTd2 colspan=3>
-<input type=submit value="<?=$Lang['AddChoosedToMy2']?>">
+<input type=submit value="<?php echo $Lang['AddChoosedToMy2']?>">
 </td></tr>
 </form>
 

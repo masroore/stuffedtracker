@@ -10,34 +10,34 @@
 <?for ($i=0;$i<count($InCampArr);$i++) {
 	$Row=$InCampArr[$i];?>
 	<tr>
-	<td class=<?=$Row->_STYLE?>>
+	<td class=<?php echo $Row->_STYLE?>>
 	<table width=100% cellpadding=0 cellspacing=0 border=0><tr>
 
 	<td width=100%>
-	<a href="<?=$Row->_STAT_LINK?>">
-	<B style="color:#000000"><?=$Row->NAME?></B>
+	<a href="<?php echo $Row->_STAT_LINK?>">
+	<B style="color:#000000"><?php echo $Row->NAME?></B>
 
-	<?if ($Row->DESCRIPTION) {?><br>	<span class="ListDescr"><?=$Row->DESCRIPTION?></span><?}?>
+	<?if ($Row->DESCRIPTION) {?><br>	<span class="ListDescr"><?php echo $Row->DESCRIPTION?></span><?}?>
 
 	<br>
 	<?if ($nsUser->Columns->CLICKS) {?>
-	<?=$Lang['Hits']?>: <?=$Row->SplitStat['CntClick']?>, 
-	<?=$Lang['UniVisitors']?>: <?=$Row->SplitStat['UniClick']?>, 
+	<?php echo $Lang['Hits']?>: <?php echo $Row->SplitStat['CntClick']?>,
+	<?php echo $Lang['UniVisitors']?>: <?php echo $Row->SplitStat['UniClick']?>,
 	<?}?>
 	<?if ($nsUser->Columns->CONVERSIONS) {?>
-	<?=$Lang['ActionsConv']?>: <?=$Row->SplitStat['ActionConv']?>%, 
-	<?=$Lang['SalesConv']?>: <?=$Row->SplitStat['SaleConv']?>%
+	<?php echo $Lang['ActionsConv']?>: <?php echo $Row->SplitStat['ActionConv']?>%,
+	<?php echo $Lang['SalesConv']?>: <?php echo $Row->SplitStat['SaleConv']?>%
 	<?}?>
 	</a>
 	</td>
 
 	<td class=ListRowLeft>
-	<?
-	$nsButtons->Add("icon_link.gif", $Lang['CodeGen'], $Row->_CODELINK);
-	$nsButtons->Add("edit.gif", $Lang['Edit'], $Row->_EDITLINK);
-	$nsButtons->Add("delete.gif", $Lang['Delete'], $Row->_DELETELINK, $Lang['YouSure']);
-	$nsButtons->Dump();
-	?>
+	<?php
+    $nsButtons->Add('icon_link.gif', $Lang['CodeGen'], $Row->_CODELINK);
+    $nsButtons->Add('edit.gif', $Lang['Edit'], $Row->_EDITLINK);
+    $nsButtons->Add('delete.gif', $Lang['Delete'], $Row->_DELETELINK, $Lang['YouSure']);
+    $nsButtons->Dump();
+    ?>
 	</td>
 	</tr></table>
 

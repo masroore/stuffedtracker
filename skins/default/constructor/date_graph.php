@@ -1,4 +1,4 @@
-<!-- Graphs -->	 
+<!-- Graphs -->
 <div style="border-style:solid;border-width:1px;border-color:#c7c7c7">
 
 <?if ($SaveMode=="PAID"&&$ClickGraph->CanDump&&$nsUser->Columns->CLICKS) $ClickGraph->Dump();?>
@@ -19,4 +19,4 @@
 <?if ($SaleConvGraph->CanDump&&$nsUser->Columns->SALES&&$nsUser->Columns->CONVERSIONS) $SaleConvGraph->Dump();?>
 
 </div>
-<!--// Graphs -->	 	 
+<!--// Graphs -->

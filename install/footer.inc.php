@@ -2,10 +2,14 @@
 <?if (!$NoButtons) {?>
 <table width=100% cellpadding=0 cellspacing=0 border=0>
 <tr><td height=50 align=right>
-<?
-if ($Step>0&&!$NoPrevStep) echo "<input type=button ID=\"StepBack\" value=\"&laquo; ".(($PrevTitle)?$PrevTitle:"Назад")."\" onclick=\"StepTo(".($Step-1).", 1);\">";
-echo "&nbsp;";
-if (!$Finished)echo "<input type=submit ID=\"StepForw\" value=\"".(($NextTitle)?$NextTitle:"Далее")." &raquo;\" onclick=\"return StepTo($Step);\"  ".(($DisableNext)?"disabled":"").">";
+<?php
+if ($Step > 0 && !$NoPrevStep) {
+    echo '<input type=button ID="StepBack" value="&laquo; ' . (($PrevTitle) ?: 'Назад') . '" onclick="StepTo(' . ($Step - 1) . ', 1);">';
+}
+echo '&nbsp;';
+if (!$Finished) {
+    echo '<input type=submit ID="StepForw" value="' . (($NextTitle) ?: 'Далее') . " &raquo;\" onclick=\"return StepTo($Step);\"  " . (($DisableNext) ? 'disabled' : '') . '>';
+}
 ?>
 </td></tr>
 </table>
@@ -33,7 +37,7 @@ if (!$Finished)echo "<input type=submit ID=\"StepForw\" value=\"".(($NextTitle)?
 <td width="250">
 </td>
 <td>
-<p class=Copyright><?=$Lang['Copyright']?></p>
+<p class=Copyright><?php echo $Lang['Copyright']?></p>
 
 </td>
 </tr>

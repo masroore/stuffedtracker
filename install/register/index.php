@@ -3,33 +3,33 @@
 <table  class=FormTable>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['Login']?> *
+<?php echo $Lang['Login']?> *
 </td><td class=FormRightTd>
-<input type=text  name="RegLogin" value="<?=$RegLogin?>">
+<input type=text  name="RegLogin" value="<?php echo $RegLogin?>">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['Pass']?> *
+<?php echo $Lang['Pass']?> *
 </td><td class=FormRightTd>
-<input type=password  name="RegPass" value="<?=$RegPass?>">
+<input type=password  name="RegPass" value="<?php echo $RegPass?>">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['RepeatPass']?> *
+<?php echo $Lang['RepeatPass']?> *
 </td><td class=FormRightTd>
-<input type=password  name="RegPass2" value="<?=$RegPass2?>">
+<input type=password  name="RegPass2" value="<?php echo $RegPass2?>">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['Name']?> *
+<?php echo $Lang['Name']?> *
 </td><td class=FormRightTd>
-<input type=text  name="RegName" value="<?=$RegName?>">
+<input type=text  name="RegName" value="<?php echo $RegName?>">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['Email']?> *
+<?php echo $Lang['Email']?> *
 </td><td class=FormRightTd>
-<input type=text  name="RegEmail" value="<?=$RegEmail?>">
+<input type=text  name="RegEmail" value="<?php echo $RegEmail?>">
 </td></tr>
 
 

@@ -15,34 +15,34 @@
 
 	<?if ($Row->NewComp&&$nsUser->ADMIN) {?>
 		<tr><td colspan=3 class=ListRowRight style="border-bottom-width:2px;">
-		<span class=MyTrackerHeader><?=$Row->COMP_NAME?></span>
+		<span class=MyTrackerHeader><?php echo $Row->COMP_NAME?></span>
 		</td></tr>
 	<?}?>
 
 	<tr>
-	<td class=<?=$Row->_STYLE?>>
+	<td class=<?php echo $Row->_STYLE?>>
 	<table width=100% cellpadding=0 cellspacing=0 border=0>
 	<tr>
 
 	<td width=25 nowrap>
 	<?if (!ValidId($Row->WATCH_ID)) {?>
-		<input type=checkbox value=1 name="AddToMy[<?=$Row->ID?>]">
+		<input type=checkbox value=1 name="AddToMy[<?php echo $Row->ID?>]">
 	<?}?>
 	</td>
-	
+
 	<td width=100%>
-	<B style="color:#000000"><span style="font-size:10px;color:999999"><?=$Row->HOST?></span>&nbsp;
-	<?=$Row->NAME?></B>
+	<B style="color:#000000"><span style="font-size:10px;color:999999"><?php echo $Row->HOST?></span>&nbsp;
+	<?php echo $Row->NAME?></B>
 	</td>
 	<td>
-	<?
-	$nsButtons->Add("edit.gif", $Lang['Edit'], getURL("actions", "EditId=".$Row->ID."&CpId=".$Row->COMPANY_ID."&SiteId=".$Row->SITE_ID));
-	$nsButtons->Dump();
-	?>
+	<?php
+    $nsButtons->Add('edit.gif', $Lang['Edit'], getURL('actions', 'EditId=' . $Row->ID . '&CpId=' . $Row->COMPANY_ID . '&SiteId=' . $Row->SITE_ID));
+    $nsButtons->Dump();
+    ?>
 	</td>
 
 	</tr></table>
-	
+
 	</td></tr>
 
 <?}?>
@@ -50,7 +50,7 @@
 
 <?if (!$NoAdd) {?>
 <tr><td class=ReportSimpleTd2 colspan=3>
-<input type=submit value="<?=$Lang['AddChoosedToMy2']?>">
+<input type=submit value="<?php echo $Lang['AddChoosedToMy2']?>">
 </td></tr>
 <?}?>
 </form>

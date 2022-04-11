@@ -4,13 +4,13 @@
 
 
 <?PostFORM();?>
-<input type="hidden" name="HostId" value="<?=$HostId?>">
-<input type="hidden" name="EditPage" value="<?=$EditPage?>">
+<input type="hidden" name="HostId" value="<?php echo $HostId?>">
+<input type="hidden" name="EditPage" value="<?php echo $EditPage?>">
 
 
 <table class=CaptionTable>
 <tr><td class=CaptionTd>
-<?=$TableCaption?>
+<?php echo $TableCaption?>
 </td></tr>
 </table>
 
@@ -19,23 +19,23 @@
 <table  class=FormTable>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['Name']?>
+<?php echo $Lang['Name']?>
 <?FormError("Name")?>
 </td><td class=FormRightTd>
-<input type=text name="EditArr[Name]" value="<?=$EditArr['Name']?>">
+<input type=text name="EditArr[Name]" value="<?php echo $EditArr['Name']?>">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['Path']?>
+<?php echo $Lang['Path']?>
 <?FormError("Path")?>
 </td><td class=FormRightTd>
-<input type=text name="EditArr[Path]" value="<?=$EditArr['Path']?>">
+<input type=text name="EditArr[Path]" value="<?php echo $EditArr['Path']?>">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['PageIgnore']?>
+<?php echo $Lang['PageIgnore']?>
 </td><td class=FormRightTd>
-<input type=checkbox name="EditArr[PageIgnore]" <?=(($EditArr['PageIgnore']==1)?"checked":"")?> value="1">
+<input type=checkbox name="EditArr[PageIgnore]" <?php echo (($EditArr['PageIgnore'] == 1) ? 'checked' : '')?> value="1">
 </td></tr>
 
 
@@ -45,7 +45,7 @@
 <table class=SubmitTable>
 <tr><td class=SubmitLeftTd>
 </td><td class=SubmitRightTd>
-<input type=submit value="<?=$Lang['Save']?>">
+<input type=submit value="<?php echo $Lang['Save']?>">
 </td></tr>
 </table>
 

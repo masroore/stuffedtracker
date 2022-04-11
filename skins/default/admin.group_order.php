@@ -16,17 +16,18 @@ arrTmp=false;
 optTemp=false;
 arrDisabled=new Array();
 
-SelectSize=<?=count($SelectOrder)?>;
+SelectSize=<?php echo count($SelectOrder)?>;
 
-<?	
-foreach ($OrderArr as $Pos=>$Row) {
-	$Key=$Row['Key'];
-	echo "arrOptions[$Pos]=new Array();\n";
-	echo "arrOptions[$Pos][0]='".$Lang[$OrderConstPath[$Key]]."';\n";
-	echo "arrOptions[$Pos][1]='$Key';\n";
-	echo "arrOptions[$Pos][2]='".$Row['OrderBy']."';\n";
-	echo "arrOptions[$Pos][3]='".$Row['OrderTo']."';\n";
-	if (!isset($OrderKeys[$Key])) echo "arrDisabled.push('$Key');\n";
+<?php	foreach ($OrderArr as $Pos => $Row) {
+    $Key = $Row['Key'];
+    echo "arrOptions[$Pos]=new Array();\n";
+    echo "arrOptions[$Pos][0]='" . $Lang[$OrderConstPath[$Key]] . "';\n";
+    echo "arrOptions[$Pos][1]='$Key';\n";
+    echo "arrOptions[$Pos][2]='" . $Row['OrderBy'] . "';\n";
+    echo "arrOptions[$Pos][3]='" . $Row['OrderTo'] . "';\n";
+    if (!isset($OrderKeys[$Key])) {
+        echo "arrDisabled.push('$Key');\n";
+    }
 }
 ?>
 
@@ -54,8 +55,8 @@ function PrepareButtons(SelObj)
 	else oBtnDown.disabled=false;
 
 	oBtnDisable.disabled=false;
-	if (IsOptionDisabled(SelObj.options[SelObj.selectedIndex].value)) oBtnDisable.value="<?=$Lang['Enable']?>";
-	else oBtnDisable.value="<?=$Lang['Disable']?>";
+	if (IsOptionDisabled(SelObj.options[SelObj.selectedIndex].value)) oBtnDisable.value="<?php echo $Lang['Enable']?>";
+	else oBtnDisable.value="<?php echo $Lang['Disable']?>";
 
 	oOrderBySel.options[0].innerHTML=arrOptions[SelObj.selectedIndex][0];
 	var OrderBy=0;
@@ -215,15 +216,15 @@ function SaveByDefault()
 
 
 <?PostFORM(false, false, false, "ID=\"SelectForm\"");?>
-<input type=hidden name="CompanyId" value="<?=$CompanyId?>">
-<input type=hidden name="Mode" value="<?=$Mode?>">
+<input type=hidden name="CompanyId" value="<?php echo $CompanyId?>">
+<input type=hidden name="Mode" value="<?php echo $Mode?>">
 
-<?
-foreach ($OrderArr as $Pos=>$Row) {
-	echo "<input type=hidden ID=\"SavePosArr[".$Row['Key']."]\" name=\"SavePosArr[".$Row['Key']."]\" value=\"$Pos\">\n";
-	echo "<input type=hidden ID=\"SaveEnableArr[".$Row['Key']."]\" name=\"SaveEnableArr[".$Row['Key']."]\" value=\"".(($Row['Checked'])?1:0)."\">\n";
-	echo "<input type=hidden ID=\"SaveOrderByArr[".$Row['Key']."]\" name=\"SaveOrderByArr[".$Row['Key']."]\" value=\"".$Row['OrderBy']."\">\n";
-	echo "<input type=hidden ID=\"SaveOrderToArr[".$Row['Key']."]\" name=\"SaveOrderToArr[".$Row['Key']."]\" value=\"".$Row['OrderTo']."\">\n";
+<?php
+foreach ($OrderArr as $Pos => $Row) {
+    echo '<input type=hidden ID="SavePosArr[' . $Row['Key'] . ']" name="SavePosArr[' . $Row['Key'] . "]\" value=\"$Pos\">\n";
+    echo '<input type=hidden ID="SaveEnableArr[' . $Row['Key'] . ']" name="SaveEnableArr[' . $Row['Key'] . ']" value="' . (($Row['Checked']) ? 1 : 0) . "\">\n";
+    echo '<input type=hidden ID="SaveOrderByArr[' . $Row['Key'] . ']" name="SaveOrderByArr[' . $Row['Key'] . ']" value="' . $Row['OrderBy'] . "\">\n";
+    echo '<input type=hidden ID="SaveOrderToArr[' . $Row['Key'] . ']" name="SaveOrderToArr[' . $Row['Key'] . ']" value="' . $Row['OrderTo'] . "\">\n";
 }
 ?>
 
@@ -232,7 +233,7 @@ foreach ($OrderArr as $Pos=>$Row) {
 
 <tr>
 <td valign=top width=33% rowspan=3>
-	<?=$Lang['ListItem']?><br><br>
+	<?php echo $Lang['ListItem']?><br><br>
 	<div ID=SelectDiv width=100%>
 	<select ID="GroupSelect" name="SaveOrderArr" style="width:100%">
 	</select>
@@ -242,31 +243,31 @@ foreach ($OrderArr as $Pos=>$Row) {
 
 <td valign=top width=33% height=10>
 &nbsp;<br><br>
-<input type=button ID="BtnUp" value="<?=$Lang['Up']?>" disabled onclick="MoveOptionUp();">&nbsp;<input type=button ID="BtnDown" value="<?=$Lang['Down']?>" disabled onclick="MoveOptionDown();"><br><br>
-<input type=button ID="BtnDisable" value="<?=$Lang['Disable']?>" disabled onclick="DisableOption();">
+<input type=button ID="BtnUp" value="<?php echo $Lang['Up']?>" disabled onclick="MoveOptionUp();">&nbsp;<input type=button ID="BtnDown" value="<?php echo $Lang['Down']?>" disabled onclick="MoveOptionDown();"><br><br>
+<input type=button ID="BtnDisable" value="<?php echo $Lang['Disable']?>" disabled onclick="DisableOption();">
 
 </td><td valign=top width=33% height=10>
 
-<?=$Lang['DefaultSort']?><br><br>
+<?php echo $Lang['DefaultSort']?><br><br>
 <select ID="SelectOrderBy" onchange="ChangeOrderBy(this);">
 <option value="NAME">---------------------------------------------------</option>
-<option value="CNT"><?=$Lang['ByHit']?></option>
-<option value="UNI"><?=$Lang['ByUni']?></option>
-<option value="SALECNT"><?=$Lang['BySaleCnt']?></option>
-<option value="SALEUNI"><?=$Lang['BySaleUni']?></option>
-<option value="ACTIONCNT"><?=$Lang['ByActionCnt']?></option>
-<option value="ACTIONUNI"><?=$Lang['ByActionUni']?></option>
-<option value="ACTCONV"><?=$Lang['ByActionConv']?></option>
-<option value="SALECONV"><?=$Lang['BySaleConv']?></option>
-<option value="INCOME"><?=$Lang['ByIncome']?></option>
+<option value="CNT"><?php echo $Lang['ByHit']?></option>
+<option value="UNI"><?php echo $Lang['ByUni']?></option>
+<option value="SALECNT"><?php echo $Lang['BySaleCnt']?></option>
+<option value="SALEUNI"><?php echo $Lang['BySaleUni']?></option>
+<option value="ACTIONCNT"><?php echo $Lang['ByActionCnt']?></option>
+<option value="ACTIONUNI"><?php echo $Lang['ByActionUni']?></option>
+<option value="ACTCONV"><?php echo $Lang['ByActionConv']?></option>
+<option value="SALECONV"><?php echo $Lang['BySaleConv']?></option>
+<option value="INCOME"><?php echo $Lang['ByIncome']?></option>
 <?if ($Mode=="PAID") {?>
-<option value="ROI"><?=$Lang['ByROI']?></option>
-<option value="COST"><?=$Lang['ByCost']?></option>
+<option value="ROI"><?php echo $Lang['ByROI']?></option>
+<option value="COST"><?php echo $Lang['ByCost']?></option>
 <?}?>
 </select>&nbsp;
 <select ID="SelectOrderTo" onchange="ChangeOrderTo(this);">
-<option value="ASC"><?=$Lang['Asc']?></option>
-<option value="DESC"><?=$Lang['Desc']?></option>
+<option value="ASC"><?php echo $Lang['Asc']?></option>
+<option value="DESC"><?php echo $Lang['Desc']?></option>
 </select>
 
 </td>
@@ -274,17 +275,17 @@ foreach ($OrderArr as $Pos=>$Row) {
 
 <tr>
 <td width=33% colspan=2 valign=top height=1><p>
-<IMG SRC="<?=FileLink("images/0.gif");?>" WIDTH="100%" HEIGHT="1" BORDER="0" ALT="" style="background:#C6C6C6">
+<IMG SRC="<?php echo FileLink('images/0.gif'); ?>" WIDTH="100%" HEIGHT="1" BORDER="0" ALT="" style="background:#C6C6C6">
 </p>
 </td></tr>
 
 
 <tr>
 <td width=33% colspan=2 valign=top>
-<input type=button value="<?=$Lang['Save']?>" onclick="SaveSelect();">
+<input type=button value="<?php echo $Lang['Save']?>" onclick="SaveSelect();">
 
 <?if (ValidId($CompanyId)&&$CompanyId>0) {?>
-&nbsp;<input type=button value="<?=$Lang['Reset']?>" onclick="SaveByDefault();">
+&nbsp;<input type=button value="<?php echo $Lang['Reset']?>" onclick="SaveByDefault();">
 <?}?>
 
 </td>
@@ -310,8 +311,8 @@ PrepareButtons(SelObj);
 
 <?GetFORM(false, false, false, "ID=\"ByDefaultForm\"");?>
 <input type=hidden name="ClearOrder" value="1">
-<input type=hidden name="CompanyId" value="<?=$CompanyId?>">
-<input type=hidden name="Mode" value="<?=$Mode?>">
+<input type=hidden name="CompanyId" value="<?php echo $CompanyId?>">
+<input type=hidden name="Mode" value="<?php echo $Mode?>">
 </form>
 
 <?include $nsTemplate->Inc("inc/footer");?>

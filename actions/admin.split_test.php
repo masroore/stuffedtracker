@@ -76,13 +76,13 @@ if (ValidVar($NewPage)&&ValidId($EditId)) {
 		if (strpos($NewPageArr['query'], "ns_skip")!==false) {
 			$NewPageArr['query']=preg_replace("/ns_skip=[^&]*/", "", $NewPageArr['query']);
 		}
-		
+
 		if (!$AddToSite) {
 			$Query = "
-					SELECT 
-						COUNT( DISTINCT SH.SITE_ID) 
+					SELECT
+						COUNT( DISTINCT SH.SITE_ID)
 					FROM ".PFX."_tracker_site_host SH
-						INNER JOIN ".PFX."_tracker_site S 
+						INNER JOIN ".PFX."_tracker_site S
 							ON S.ID=SH.SITE_ID
 					WHERE SH.HOST = '".escape_string($NewPageArr['host'])."' AND S.COMPANY_ID=$CompId
 				";
@@ -100,7 +100,7 @@ if (ValidVar($NewPage)&&ValidId($EditId)) {
 			}
 			else $PageSiteId=$AddToSite;
 		}
-		
+
 		if ($SiteIdCnt>1 || ($CompanySiteCnt && !$PageSiteId)) $SelectNeeded=true;
 		if ($CompanySiteCnt==1 && !$PageSiteId) {
 			$SelectNeeded=false;
@@ -110,7 +110,7 @@ if (ValidVar($NewPage)&&ValidId($EditId)) {
 			$Db->Query($Query, $NewPageArr['host']);
 			$PageSiteId=$SiteId;
 		}
-		
+
 		if ($PageSiteId&&!$SelectNeeded) {
 			$PageId=GetPageId($NewPageArr, $PageSiteId);
 			$QueryId=(ValidVar($NewPageArr['query']))?GetQueryId($NewPageArr['query']):0;
@@ -130,7 +130,7 @@ if (ValidVar($EditId)=="new") {
 		$EditArr['Rem']=0;
 	}
 	$EditArr['Name']=htmlspecialchars(stripslashes($EditArr['Name']));
-	$EditArr['Descr']=htmlspecialchars(stripslashes($EditArr['Descr']));	
+	$EditArr['Descr']=htmlspecialchars(stripslashes($EditArr['Descr']));
 	$TableCaption=$Lang['CaptionNew'];
 	$SubMenu[0]['Name']=$Lang['BackToList'];
 	$SubMenu[0]['Link']=getURL("split_list");
@@ -148,14 +148,14 @@ if (ValidId($EditId)&&!$EditPage) {
 		$HL=$nsProduct->HL;
 		$nsProduct->HL=$SSLink;
 	}
-	
+
 	if (!MOD_R) $SLink = getURL("split", "s=".$SplitTest->SPLIT_ID, "track");
 	else {
 		$SLink = str_replace(".html", "", getURL("split", "", "track"));
 		$SLink .= "/s".$SplitTest->SPLIT_ID."/";
 	}
 	$Logs->Msg($SLink);
-	
+
 	if ($SSLink) {
 		$nsProduct->HL=$HL;
 	}
@@ -209,7 +209,7 @@ if (ValidVar($EditPage)=="new") {
 			FROM ".PFX."_tracker_split_test TST
 			INNER JOIN ".PFX."_tracker_camp_piece TCP
 				ON TCP.ID=TST.SUB_ID
-			INNER JOIN ".PFX."_tracker_campaign TC 
+			INNER JOIN ".PFX."_tracker_campaign TC
 				ON TC.ID=TCP.CAMPAIGN_ID
 			WHERE TST.ID=".$SplitTest->SPLIT_ID."
 	";
@@ -281,11 +281,11 @@ function UpdateSplitTest($Id, &$Arr)
 	$Db->Query($Query);
 	if (ValidVar($Watch)==1&&!CheckSubWatch($Id, $nsUser->UserId())) SetSubWatch($Id, $nsUser->UserId());
 	else RemoveSubWatch($Id, $nsUser->UserId());
-	
+
 	$WrRes=true;
 	$WrRes=SaveSplitToFile($Id, "split_test.nodb");
 	//if (!$WrRes) $Logs->Err($Lang['WriteErr']);
-	//if ($WrRes) 
+	//if ($WrRes)
 	$nsProduct->Redir("split_test", "RUpd=1&EditId=$Id");
 }
 
@@ -386,12 +386,12 @@ function GetSplitPages($Id)
 {
 	$PagesArr=array();
 	$Query = "
-		SELECT TS.*, SI.HOST, TQ.QUERY_STRING, TSP.ID AS TSP_ID, 
+		SELECT TS.*, SI.HOST, TQ.QUERY_STRING, TSP.ID AS TSP_ID,
 			TSP.FULL_PATH
 			FROM ".PFX."_tracker_split_page TSP
 			INNER JOIN ".PFX."_tracker_site_page TS
 				ON TS.ID=TSP.PAGE_ID
-			INNER JOIN ".PFX."_tracker_site SI 
+			INNER JOIN ".PFX."_tracker_site SI
 				ON SI.ID = TS.SITE_ID
 			LEFT JOIN ".PFX."_tracker_query TQ
 				ON TQ.ID=TSP.QUERY_ID
@@ -433,7 +433,7 @@ function PreparePathAddr($Addr)
 function GetQueryId($Qr=false)
 {
 	if (!$Qr) return 0;
-	global $Db;	
+	global $Db;
 	$Qr=escape_string($Qr);
 	$Query = "SELECT ID FROM ".PFX."_tracker_query WHERE MD5_SEARCH=MD5('$Qr')";
 	$CheckId=$Db->ReturnValue($Query);

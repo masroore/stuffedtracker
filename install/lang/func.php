@@ -1,11 +1,9 @@
-<?
+<?php
 
-$SaveVars=array("CLang");
-$PageTitle=$Lang['Welcome'];
+$SaveVars = ['CLang'];
+$PageTitle = $Lang['Welcome'];
 
-function ValidateLang()
+function ValidateLang(): void
 {
-	NextStep();
+    NextStep();
 }
-
-?>

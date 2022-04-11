@@ -43,7 +43,7 @@ function ChangeForm()
 		if (oHelpRedir.innerHTML!="") oHelpRedir.style.display="";
 		oPageTempl.style.display='';
 	}
-	
+
 	if (Mode==2) {
 		oTextUrl.style.display="none";
 		oInputUrl.disabled=oCheck.checked;
@@ -53,7 +53,7 @@ function ChangeForm()
 		oHelpRedir.style.display="none";
 		oHelpCode.style.display="";
 		oPageTempl.style.display='none';
-	}	
+	}
 
 	ChangePageName(Mode);
 
@@ -63,8 +63,8 @@ function ChangeForm()
 	if ($SitesArr[$i]->ID==$SiteId) echo "var PrevIndex=$i;\n";
 }?>
 
-var PageName1='<?=$Lang['Template']?>';
-var PageName2='<?=$Lang['Template2']?>';
+var PageName1='<?php echo $Lang['Template']?>';
+var PageName2='<?php echo $Lang['Template2']?>';
 
 function ChangePageName(Mode)
 {
@@ -102,23 +102,23 @@ function ReplaceHost(URL, NewHost, PrevHost)
 <table width=100%>
 <tr><td class=FormHeader>
 <?GetFORM();?>
-<input type=hidden name="CpId" value="<?=$CpId?>">
+<input type=hidden name="CpId" value="<?php echo $CpId?>">
 <?if ($EditId=="new") {?>
-<input type=hidden name="EditId" value="<?=$EditId?>">
+<input type=hidden name="EditId" value="<?php echo $EditId?>">
 <input type=hidden name="Mode" value="new">
 <?}?>
 <input type=hidden name=fc value=1>
-<B style="color:#000000"><?=$Lang['ChooseSite']?>:</B>&nbsp;
-<select name=SiteId <?=(($SiteId>0&&ValidId($EditId))?"disabled":"")?> <?=(($EditId=="new")?"onchange=\"ChangeSiteOnFly(this);\"":"")?>>
+<B style="color:#000000"><?php echo $Lang['ChooseSite']?>:</B>&nbsp;
+<select name=SiteId <?php echo (($SiteId > 0 && ValidId($EditId)) ? 'disabled' : '')?> <?php echo (($EditId == 'new') ? 'onchange="ChangeSiteOnFly(this);"' : '')?>>
 <?if ($EditId!="new") {?><option></option><?}?>
 <?for ($i=0;$i<count($SitesArr);$i++) {?>
-	<option value=<?=$SitesArr[$i]->ID?> <?=(($SitesArr[$i]->ID==$SiteId)?"selected":"")?>><?=$SitesArr[$i]->HOST?></option>
+	<option value=<?php echo $SitesArr[$i]->ID?> <?php echo (($SitesArr[$i]->ID == $SiteId) ? 'selected' : '')?>><?php echo $SitesArr[$i]->HOST?></option>
 <?}?>
 </select>&nbsp;
-<input type=submit value="<?=$Lang['Choose']?>" <?=(($SiteId>0&&ValidId($EditId))?"disabled":"")?>>
+<input type=submit value="<?php echo $Lang['Choose']?>" <?php echo (($SiteId > 0 && ValidId($EditId)) ? 'disabled' : '')?>>
 </form>
 </td></tr></table></div>
-<IMG SRC="<?=FileLink("images/0.gif");?>" WIDTH="1" HEIGHT="10" BORDER="0" ALT="">
+<IMG SRC="<?php echo FileLink('images/0.gif'); ?>" WIDTH="1" HEIGHT="10" BORDER="0" ALT="">
 <?}?>
 
 
@@ -131,40 +131,40 @@ function ReplaceHost(URL, NewHost, PrevHost)
 
 <table class=CaptionTable>
 <tr><td class=CaptionTd>
-<?=$TableCaption?></td></tr>
+<?php echo $TableCaption?></td></tr>
 </table>
 
 <table  class=FormTable>
 <?PostFORM();?>
-<input type=hidden name="CpId" value="<?=$CpId?>">
-<input type=hidden id="HidSiteId" name="SiteId" value="<?=$SiteId?>">
-<input type=hidden name="EditId" value="<?=$EditId?>">
-<input type=hidden name="Mode" value="<?=$Mode?>">
+<input type=hidden name="CpId" value="<?php echo $CpId?>">
+<input type=hidden id="HidSiteId" name="SiteId" value="<?php echo $SiteId?>">
+<input type=hidden name="EditId" value="<?php echo $EditId?>">
+<input type=hidden name="Mode" value="<?php echo $Mode?>">
 
 
 
 
 
 <tr><td class=FormLeftTd width=150>
-<?=$Lang['Name']?>
+<?php echo $Lang['Name']?>
 </td><td class=FormRightTd>
-<input type=text size=50 name="EditArr[Name]" value="<?=htmlspecialchars(stripslashes($EditArr['Name']))?>">
+<input type=text size=50 name="EditArr[Name]" value="<?php echo htmlspecialchars(stripslashes($EditArr['Name']))?>">
 </td></tr>
 
 <tr><td class=FormLeftTd width=150>
-<?=$Lang['LangType']?>
+<?php echo $Lang['LangType']?>
 </td><td class=FormRightTd>
-<select Id="RedirOnly" name="EditArr[RedirOnly]" onchange="ChangeForm();" <?=((ValidVar($Action->IsPathTempl))?"disabled":"")?>>
-<option value=0 <?=(($EditArr['RedirOnly']==0&&!ValidVar($Action->IsPathTempl))?"selected":"")?>><?=$Lang['CatchPage']?></option>
-<option value=1 <?=(($EditArr['RedirOnly']==1&&!ValidVar($Action->IsPathTempl))?"selected":"")?>><?=$Lang['CatchRedir']?></option>
-<option value=2 <?=(($EditArr['CodeAction']==1)?"selected":"")?>><?=$Lang['CatchCode']?></option>
+<select Id="RedirOnly" name="EditArr[RedirOnly]" onchange="ChangeForm();" <?php echo ((ValidVar($Action->IsPathTempl)) ? 'disabled' : '')?>>
+<option value=0 <?php echo (($EditArr['RedirOnly'] == 0 && !ValidVar($Action->IsPathTempl)) ? 'selected' : '')?>><?php echo $Lang['CatchPage']?></option>
+<option value=1 <?php echo (($EditArr['RedirOnly'] == 1 && !ValidVar($Action->IsPathTempl)) ? 'selected' : '')?>><?php echo $Lang['CatchRedir']?></option>
+<option value=2 <?php echo (($EditArr['CodeAction'] == 1) ? 'selected' : '')?>><?php echo $Lang['CatchCode']?></option>
 </select>
 </td></tr>
 
 <tr id="PageTempl"><td class=FormLeftTd width=150>
-<div id="PageName"><?=((ValidVar($EditArr['RedirOnly'])==1)?$Lang['Template2']:$Lang['Template'])?></div>
+<div id="PageName"><?php echo ((ValidVar($EditArr['RedirOnly']) == 1) ? $Lang['Template2'] : $Lang['Template'])?></div>
 </td><td class=FormRightTd>
-<input type=text size=70 id="Templ" name="EditArr[Templ]" value="<?=htmlspecialchars(stripslashes($EditArr['Templ']))?>">
+<input type=text size=70 id="Templ" name="EditArr[Templ]" value="<?php echo htmlspecialchars(stripslashes($EditArr['Templ']))?>">
 </td></tr>
 
 
@@ -172,21 +172,21 @@ function ReplaceHost(URL, NewHost, PrevHost)
 
 
 <tr ID="RedirUrl"><td class=FormLeftTd width=150>
-<?=$Lang['RedirTo']?>
+<?php echo $Lang['RedirTo']?>
 </td><td class=FormRightTd>
-<input type=text ID="RedirUrlText" name="EditArr[RedirUrl]" value="<?=htmlspecialchars(stripslashes(urldecode($EditArr['RedirUrl'])))?>" size=70>
+<input type=text ID="RedirUrlText" name="EditArr[RedirUrl]" value="<?php echo htmlspecialchars(stripslashes(urldecode($EditArr['RedirUrl'])))?>" size=70>
 </td></tr>
 
 <tr ID="DynamicRedir"><td class=FormLeftTd width=150>
-<?=$Lang['DynamicUrl']?>
+<?php echo $Lang['DynamicUrl']?>
 </td><td class=FormRightTd>
-<input type=checkbox ID="DynamicCheck" name="EditArr[Dynamic]" value=1 <?=(ValidVar($EditArr['Dynamic']))?"checked":""?> onclick="ChangeForm();">
+<input type=checkbox ID="DynamicCheck" name="EditArr[Dynamic]" value=1 <?php echo (ValidVar($EditArr['Dynamic'])) ? 'checked' : ''?> onclick="ChangeForm();">
 </td></tr>
 
 <tr><td class=FormLeftTd width=150>
-<?=$Lang['ActionActive']?>
+<?php echo $Lang['ActionActive']?>
 </td><td class=FormRightTd>
-<input type=checkbox name="EditArr[Active]" value=1 <?=(ValidVar($EditArr['Active']))?"checked":""?>>
+<input type=checkbox name="EditArr[Active]" value=1 <?php echo (ValidVar($EditArr['Active'])) ? 'checked' : ''?>>
 </td></tr>
 
 
@@ -196,15 +196,15 @@ function ReplaceHost(URL, NewHost, PrevHost)
 <table class=SubmitTable>
 <tr><td class=SubmitLeftTd>
 </td><td class=SubmitRightTd>
-<input type=submit value="<?=$Lang['Save']?>">
+<input type=submit value="<?php echo $Lang['Save']?>">
 </td></tr>
 </table>
 
 </form>
 
-<div ID="ActionHelpOnPage" style="background:#ffffff;padding:14px;color:#000000"><?=$Lang['ActionHelpOnPage']?></div>
-<div ID="ActionHelpRedir" style="background:#ffffff;padding:14px;color:#000000"><?=$Lang['ActionHelpRedir']?></div>
-<div ID="ActionHelpCode" style="background:#ffffff;padding:14px;color:#000000"><?=$Lang['ActionHelpCode']?></div>
+<div ID="ActionHelpOnPage" style="background:#ffffff;padding:14px;color:#000000"><?php echo $Lang['ActionHelpOnPage']?></div>
+<div ID="ActionHelpRedir" style="background:#ffffff;padding:14px;color:#000000"><?php echo $Lang['ActionHelpRedir']?></div>
+<div ID="ActionHelpCode" style="background:#ffffff;padding:14px;color:#000000"><?php echo $Lang['ActionHelpCode']?></div>
 
 
 <SCRIPT LANGUAGE="JavaScript">
@@ -227,27 +227,27 @@ ChangeForm();
 	$Row=$ActionsArr[$i];?>
 
 	<tr>
-	<td class=<?=$Row->_STYLE?>>
+	<td class=<?php echo $Row->_STYLE?>>
 	<table width=100% cellpadding=0 cellspacing=0 border=0>
 
 	<td width=100%>
 	<span style="line-height:16px;">
 	<B style="color:#000000">
 	<?if ($Row->ACTIVE!=1) {?>
-	<span style="font-size:10px;color:999999"><?=ToUpper($Lang['NotActive'])?></span>&nbsp;
+	<span style="font-size:10px;color:999999"><?php echo ToUpper($Lang['NotActive'])?></span>&nbsp;
 	<?}?>
-	<?=$Row->NAME?></B>
+	<?php echo $Row->NAME?></B>
 	<?if ($Row->PATH||$Row->QUERY) {?>
 	(
 	<?if ($Row->PATH) echo $Row->PATH?>
 	<?if ($Row->QUERY) echo $Row->QUERY?>
 	 )
 	 <?}?>
-	 <?if ($Row->REDIRECT_CATCH) {?>&nbsp;<B style="font-size:10px;"><?=$Lang['RedirOnly']?></B>&nbsp;<?}?>
+	 <?if ($Row->REDIRECT_CATCH) {?>&nbsp;<B style="font-size:10px;"><?php echo $Lang['RedirOnly']?></B>&nbsp;<?}?>
 	<?if ($Row->REDIRECT_URL) echo "<br>".urldecode($Row->REDIRECT_URL);?>
 
 	<?if (!$SiteId) {?>
-	<br><span style="font-size:10px;color:999999"><B>(<?=$Row->HOST?>)</B></span>
+	<br><span style="font-size:10px;color:999999"><B>(<?php echo $Row->HOST?>)</B></span>
 	<?}?>
 
 	</span>
@@ -255,12 +255,14 @@ ChangeForm();
 
 
 	<td class=ListRowLeft>
-	<?
-	if ($Row->CODE_ACTION) $nsButtons->Add("icon_link.gif", $Lang['GenerateCode'], getURL("get_code", "CpId=$CpId&SiteId=".$Row->SITE_ID."&CodeType=1&CodePlace=3"));
-	$nsButtons->Add("edit.gif", $Lang['Edit'], getURL("actions", "CpId=$CpId&SiteId=".$Row->SITE_ID."&EditId=".$Row->ID));
-	$nsButtons->Add("delete.gif", $Lang['Delete'], getURL("actions", "CpId=$CpId&SiteId=$SiteId&DeleteId=".$Row->ID), $Lang['YouSure']);
-	$nsButtons->Dump();
-	?>
+	<?php
+    if ($Row->CODE_ACTION) {
+        $nsButtons->Add('icon_link.gif', $Lang['GenerateCode'], getURL('get_code', "CpId=$CpId&SiteId=" . $Row->SITE_ID . '&CodeType=1&CodePlace=3'));
+    }
+    $nsButtons->Add('edit.gif', $Lang['Edit'], getURL('actions', "CpId=$CpId&SiteId=" . $Row->SITE_ID . '&EditId=' . $Row->ID));
+    $nsButtons->Add('delete.gif', $Lang['Delete'], getURL('actions', "CpId=$CpId&SiteId=$SiteId&DeleteId=" . $Row->ID), $Lang['YouSure']);
+    $nsButtons->Dump();
+    ?>
 	</td>
 	</tr></table>
 

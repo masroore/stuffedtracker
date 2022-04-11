@@ -74,7 +74,7 @@ if (isset($EditId)&&$EditId=="new"&&ValidId($GrpId)) {
 		$EditArr['SrcId']="";
 	}
 	$EditArr['Name']=htmlspecialchars(stripslashes($EditArr['Name']));
-	$EditArr['Descr']=htmlspecialchars(stripslashes($EditArr['Descr']));	
+	$EditArr['Descr']=htmlspecialchars(stripslashes($EditArr['Descr']));
 	$TableCaption=$Lang['CaptionNew'];
 	$SubMenu[0]['Name']=$Lang['BackToList'];
 	if ($GrpId>0) $SubMenu[0]['Link']=getURL("incampaign", "CampId=$GrpId");
@@ -112,13 +112,13 @@ if (ValidId($EditId)) {
 		$EditCostObj=$Db->Select($Query);
 		$EditCost['StartDate']=($EditCostObj->STAMP1)?$EditCostObj->START_DATE:false;
 		$EditCost['EndDate']=($EditCostObj->STAMP2)?$EditCostObj->END_DATE:false;
-		$EditCost['Name']=$EditCostObj->NAME;	 
+		$EditCost['Name']=$EditCostObj->NAME;
 		$EditCost['Cost']=$EditCostObj->COST;
 	}
 
 	if (!ValidVar($EditCost['StartDate'])) $EditCost['StartDate']=false;
 	if (!ValidVar($EditCost['EndDate'])) $EditCost['EndDate']=false;
-	if (!ValidVar($EditCost['Name'])) $EditCost['Name']=false;	 
+	if (!ValidVar($EditCost['Name'])) $EditCost['Name']=false;
 	if (!ValidVar($EditCost['Cost'])) $EditCost['Cost']=false;
 	if (!ValidVar($EditCostId)) $EditCostId="new";
 
@@ -136,7 +136,7 @@ if (ValidId($EditId)) {
 	while ($Row=$Sql->Row()) {
 		$Row->_STYLE=$Sql->_STYLE;
 		$Row->TITLE="";
-	
+
 		if ($Row->MODE==0) {
 			if ($Row->STAMP1) $Row->TITLE.=$Row->START_DATE;
 			if ($Row->STAMP1&&$Row->STAMP2) $Row->TITLE.=" - ";
@@ -369,7 +369,7 @@ function GetPiece($Id)
 {
 	global $Db, $CurrentCompany;
 	$Query = "
-		SELECT 
+		SELECT
 			TCP.*,
 			TSC.TYPE, TSC.SRC_ID
 			FROM ".PFX."_tracker_camp_piece TCP

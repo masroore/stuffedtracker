@@ -1,4 +1,5 @@
 <?php
+
 //
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
@@ -18,44 +19,43 @@
 //
 // $Id: mail.php,v 1.3 2005/07/04 09:37:07 shalmoo Exp $
 
-require_once(SYS.'/system/class/pear.class.php');
+require_once SYS . '/system/class/pear.class.php';
 
 /**
  * PEAR's Mail:: interface. Defines the interface for implementing
  * mailers under the PEAR hierarchy, and provides supporting functions
  * useful in multiple mailer backends.
  *
- * @access public
  * @version $Revision: 1.3 $
- * @package Mail
  */
-class Mail
+class mail
 {
     /**
      * Line terminator used for separating header lines.
+     *
      * @var string
      */
-    var $sep = "\r\n";
+    public $sep = "\r\n";
 
     /**
      * Provides an interface for generating Mail:: objects of various
-     * types
+     * types.
      *
-     * @param string $driver The kind of Mail:: object to instantiate.
-     * @param array  $params The parameters to pass to the Mail:: object.
+     * @param string $driver the kind of Mail:: object to instantiate
+     * @param array  $params the parameters to pass to the Mail:: object
+     *
      * @return object Mail a instance of the driver class or if fails a PEAR Error
-     * @access public
      */
-    function factory($driver, $params = array())
+    public function factory($driver, $params = [])
     {
         $driver = strtolower($driver);
-				include_once SYS.'/system/class/email/mail/' . $driver . '.php';
+        include_once SYS . '/system/class/email/mail/' . $driver . '.php';
         $class = 'Mail_' . $driver;
         if (class_exists($class)) {
             return new $class($params);
-        } else {
-            return PEAR::raiseError('Unable to find class for driver ' . $driver);
         }
+
+        return PEAR::raiseError('Unable to find class for driver ' . $driver);
     }
 
     /**
@@ -67,24 +67,22 @@ class Mail
      *              each RFC822 valid. This may contain recipients not
      *              specified in the headers, for Bcc:, resending
      *              messages, etc.
-     *
      * @param array $headers The array of headers to send with the mail, in an
      *              associative array, where the array key is the
      *              header name (ie, 'Subject'), and the array value
      *              is the header value (ie, 'test'). The header
      *              produced from those values would be 'Subject:
      *              test'.
+     * @param string $body the full text of the message body, including any
+     *               Mime parts, etc
      *
-     * @param string $body The full text of the message body, including any
-     *               Mime parts, etc.
-     *
-     * @return mixed Returns true on success, or a PEAR_Error
+     * @return mixed returns true on success, or a PEAR_Error
      *               containing a descriptive error message on
-     *               failure.
-     * @access public
+     *               failure
+     *
      * @deprecated use Mail_mail::send instead
      */
-    function send($recipients, $headers, $body)
+    public function send($recipients, $headers, $body)
     {
         // if we're passed an array of recipients, implode it.
         if (is_array($recipients)) {
@@ -100,10 +98,9 @@ class Mail
         }
 
         // flatten the headers out.
-        list(,$text_headers) = Mail::prepareHeaders($headers);
+        [, $text_headers] = self::prepareHeaders($headers);
 
         return mail($recipients, $subject, $body, $text_headers);
-
     }
 
     /**
@@ -116,23 +113,24 @@ class Mail
      *              value (ie, 'test'). The header produced from those
      *              values would be 'Subject: test'.
      *
-     * @return mixed Returns false if it encounters a bad address,
+     * @return mixed returns false if it encounters a bad address,
      *               otherwise returns an array containing two
      *               elements: Any From: address found in the headers,
-     *               and the plain text version of the headers.
-     * @access private
+     *               and the plain text version of the headers
      */
-    function prepareHeaders($headers)
+    public function prepareHeaders($headers)
     {
-        $lines = array();
+        $lines = [];
         $from = null;
         foreach ($headers as $key => $value) {
             if ($key === 'From') {
-								include_once(SYS.'/system/class/email/mail/RFC822.php');
-            	
+                include_once SYS . '/system/class/email/mail/RFC822.php';
 
-                $addresses = Mail_RFC822::parseAddressList($value, 'localhost',
-                                                           false);
+                $addresses = Mail_RFC822::parseAddressList(
+                    $value,
+                    'localhost',
+                    false
+                );
                 $from = $addresses[0]->mailbox . '@' . $addresses[0]->host;
 
                 // Reject envelope From: addresses with spaces.
@@ -150,7 +148,8 @@ class Mail
                 $lines[] = $key . ': ' . $value;
             }
         }
-				$ret = array($from, join($this->sep, $lines) . $this->sep);
+        $ret = [$from, implode($this->sep, $lines) . $this->sep];
+
         return $ret;
     }
 
@@ -159,16 +158,15 @@ class Mail
      * bare addresses (forward paths) that can be passed to sendmail
      * or an smtp server with the rcpt to: command.
      *
-     * @param mixed Either a comma-seperated list of recipients
+     * @param mixed either a comma-seperated list of recipients
      *              (RFC822 compliant), or an array of recipients,
-     *              each RFC822 valid.
+     *              each RFC822 valid
      *
-     * @return array An array of forward paths (bare addresses).
-     * @access private
+     * @return array an array of forward paths (bare addresses)
      */
-    function parseRecipients($recipients)
+    public function parseRecipients($recipients)
     {
-				include_once(SYS.'/system/class/email/mail/RFC822.php');
+        include_once SYS . '/system/class/email/mail/RFC822.php';
 
         // if we're passed an array, assume addresses are valid and
         // implode them before parsing.
@@ -180,7 +178,7 @@ class Mail
         // for smtp recipients, etc. All relevant personal information
         // should already be in the headers.
         $addresses = Mail_RFC822::parseAddressList($recipients, 'localhost', false);
-        $recipients = array();
+        $recipients = [];
         if (is_array($addresses)) {
             foreach ($addresses as $ob) {
                 $recipients[] = $ob->mailbox . '@' . $ob->host;
@@ -189,6 +187,4 @@ class Mail
 
         return $recipients;
     }
-
 }
-?>

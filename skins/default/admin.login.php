@@ -7,11 +7,11 @@
 
 <?PostFORM();?>
 <input type="hidden" name="go_auth" value="go_auth">
-<input type="hidden" name="xref" value="<?=$xref?>">
+<input type="hidden" name="xref" value="<?php echo $xref?>">
 
 <table class=CaptionTable>
 <tr><td class=CaptionTd>
-<?=$TableCaption?>
+<?php echo $TableCaption?>
 </td></tr>
 </table>
 
@@ -19,21 +19,21 @@
 
 
 <tr><td class=FormLeftTd>
-<p><b><?=$Lang['Login']?></b></p>
+<p><b><?php echo $Lang['Login']?></b></p>
 </td>
 <td class=FormRightTd>
-<input type=text  name="xlogin" value="<?=$xlogin?>" style="width:100%;">
+<input type=text  name="xlogin" value="<?php echo $xlogin?>" style="width:100%;">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<p><b><?=$Lang['Pass']?></b></p>
+<p><b><?php echo $Lang['Pass']?></b></p>
 </td>
 <td class=FormRightTd>
 <input type=password  name="xpwd" style="width:100%;">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<p><b><?=$Lang['Remember']?></b></p>
+<p><b><?php echo $Lang['Remember']?></b></p>
 </td>
 <td class=FormRightTd>
 <input type=checkbox value=1 name=recall>
@@ -42,7 +42,7 @@
 <tr><td class=FormLeftTd>
 </td>
 <td class=FormRightTd>
-<p><a href="<?=getURL("remind", "", "pub")?>">&raquo;&nbsp;<?=$Lang['ForgotPass']?></a></p>
+<p><a href="<?php echo getURL('remind', '', 'pub')?>">&raquo;&nbsp;<?php echo $Lang['ForgotPass']?></a></p>
 </td></tr>
 
 
@@ -51,7 +51,7 @@
 <table class=SubmitTable>
 <tr><td class=SubmitLeftTd>
 </td><td class=SubmitRightTd>
-<input type=submit value="<?=$Lang['Enter']?>">
+<input type=submit value="<?php echo $Lang['Enter']?>">
 </td></tr>
 </table>
 

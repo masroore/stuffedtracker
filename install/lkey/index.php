@@ -43,20 +43,20 @@ function SetKeyField(oCheck)
 <table  class=FormTable>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['InsertLicenseKey']?>
+<?php echo $Lang['InsertLicenseKey']?>
 </td><td class=FormRightTd>
 
-<textarea name="LKey" ID="KeyText" style="width:100%;<?=(($Trial)?"text-decoration:line-through":"")?>" rows=5 onchange="OnChangeKey();" onkeyup="OnChangeKey();" <?=(($Trial)?"disabled":"")?>>
-<?=$LKey?>
+<textarea name="LKey" ID="KeyText" style="width:100%;<?php echo (($Trial) ? 'text-decoration:line-through' : '')?>" rows=5 onchange="OnChangeKey();" onkeyup="OnChangeKey();" <?php echo (($Trial) ? 'disabled' : '')?>>
+<?php echo $LKey?>
 </textarea>
 
 </td></tr>
 
 
 <tr><td class=FormLeftTd>
-<?=$Lang['IWantTrial']?>
+<?php echo $Lang['IWantTrial']?>
 </td><td class=FormRightTd>
-<input type=checkbox ID="TrialCheck" name=Trial value=1 <?=(($Trial)?"checked":"")?> onchange="OnChangeKey();SetKeyField(this);" onclick="OnChangeKey();SetKeyField(this);">
+<input type=checkbox ID="TrialCheck" name=Trial value=1 <?php echo (($Trial) ? 'checked' : '')?> onchange="OnChangeKey();SetKeyField(this);" onclick="OnChangeKey();SetKeyField(this);">
 </td></tr>
 
 </table>

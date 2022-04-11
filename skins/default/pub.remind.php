@@ -5,7 +5,7 @@
 <?PostFORM();?>
 <table class=CaptionTable>
 <tr><td class=CaptionTd>
-<?=$TableCaption?>
+<?php echo $TableCaption?>
 </td></tr>
 </table>
 
@@ -13,7 +13,7 @@
 
 
 <tr><td class=FormLeftTd>
-<p><b><?=$Lang['Email']?></b></p>
+<p><b><?php echo $Lang['Email']?></b></p>
 </td>
 <td class=FormRightTd>
 <input type=text  name="Email" value="">
@@ -22,7 +22,7 @@
 <tr><td class=FormLeftTd>
 </td>
 <td class=FormRightTd>
-<p><a href="<?=getURL("login", "", "admin")?>">&raquo;&nbsp;<?=$Lang['Login']?></a></p>
+<p><a href="<?php echo getURL('login', '', 'admin')?>">&raquo;&nbsp;<?php echo $Lang['Login']?></a></p>
 </td></tr>
 
 
@@ -32,7 +32,7 @@
 <tr><td class=SubmitLeftTd>
 
 </td><td class=SubmitRightTd>
-<input type=submit value="<?=$Lang['SendNewPass']?>">
+<input type=submit value="<?php echo $Lang['SendNewPass']?>">
 </td></tr>
 </table>
 

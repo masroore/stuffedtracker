@@ -1,3 +1,3 @@
-<?
-$nsProduct->Redir("login", "",  "admin");
-?>
+<?php
+
+$nsProduct->Redir('login', '', 'admin');

@@ -1,65 +1,63 @@
-<?
-$ProductVersion="2.2.1";
-$NoForm=false;
+<?php
 
-$Charset['ru']="Windows-1251";
-$Charset['en']="ISO-8859-1";
+$ProductVersion = '2.2.1';
+$NoForm = false;
 
-$StepLang['Name']=$Lang['StepLang'];
-$StepLang['Folder']="lang";
-$StepLang['ValidateFunc']="ValidateLang";
+$Charset['ru'] = 'Windows-1251';
+$Charset['en'] = 'ISO-8859-1';
 
-$StepLicense['Name']=$Lang['StepLicense'];
-$StepLicense['Folder']="license";
-$StepLicense['ValidateFunc']="NextStep";
+$StepLang['Name'] = $Lang['StepLang'];
+$StepLang['Folder'] = 'lang';
+$StepLang['ValidateFunc'] = 'ValidateLang';
 
-$StepDb['Name']=$Lang['StepSettings'];
-$StepDb['Folder']="settings";
-$StepDb['ValidateFunc']="CheckSettings";
+$StepLicense['Name'] = $Lang['StepLicense'];
+$StepLicense['Folder'] = 'license';
+$StepLicense['ValidateFunc'] = 'NextStep';
 
-$StepClient['Name']=$Lang['StepKey'];
-$StepClient['Folder']="lkey";
-$StepClient['ValidateFunc']="CheckLicense";
+$StepDb['Name'] = $Lang['StepSettings'];
+$StepDb['Folder'] = 'settings';
+$StepDb['ValidateFunc'] = 'CheckSettings';
 
-$StepRegister['Name']=$Lang['StepReg'];
-$StepRegister['Folder']="register";
-$StepRegister['ValidateFunc']="CheckReg";
+$StepClient['Name'] = $Lang['StepKey'];
+$StepClient['Folder'] = 'lkey';
+$StepClient['ValidateFunc'] = 'CheckLicense';
 
-$StepCompany['Name']=$Lang['StepCompany'];
-$StepCompany['Folder']="company";
-$StepCompany['ValidateFunc']="CheckCompany";
+$StepRegister['Name'] = $Lang['StepReg'];
+$StepRegister['Folder'] = 'register';
+$StepRegister['ValidateFunc'] = 'CheckReg';
 
-$StepConfirm['Name']=$Lang['StepConfirm'];
-$StepConfirm['Folder']="confirm";
-$StepConfirm['ValidateFunc']="CheckPermission";
+$StepCompany['Name'] = $Lang['StepCompany'];
+$StepCompany['Folder'] = 'company';
+$StepCompany['ValidateFunc'] = 'CheckCompany';
 
-$StepProcess['Name']=$Lang['StepInstall'];
-$StepProcess['Folder']="create";
-$StepProcess['ValidateFunc']="NextStep";
+$StepConfirm['Name'] = $Lang['StepConfirm'];
+$StepConfirm['Folder'] = 'confirm';
+$StepConfirm['ValidateFunc'] = 'CheckPermission';
 
-$StepCode['Name']=$Lang['StepCode'];
-$StepCode['Folder']="code";
-$StepCode['ValidateFunc']="NextStep";
+$StepProcess['Name'] = $Lang['StepInstall'];
+$StepProcess['Folder'] = 'create';
+$StepProcess['ValidateFunc'] = 'NextStep';
 
-$StepImport['Name']=$Lang['StepImport1'];
-$StepImport['Folder']="import1";
-$StepImport['ValidateFunc']="NextStep";
+$StepCode['Name'] = $Lang['StepCode'];
+$StepCode['Folder'] = 'code';
+$StepCode['ValidateFunc'] = 'NextStep';
 
-$StepImport2['Name']=$Lang['StepImport2'];
-$StepImport2['Folder']="import2";
-$StepImport2['ValidateFunc']="NextStep";
+$StepImport['Name'] = $Lang['StepImport1'];
+$StepImport['Folder'] = 'import1';
+$StepImport['ValidateFunc'] = 'NextStep';
 
+$StepImport2['Name'] = $Lang['StepImport2'];
+$StepImport2['Folder'] = 'import2';
+$StepImport2['ValidateFunc'] = 'NextStep';
 
-$StepArr[]=$StepLang;
-$StepArr[]=$StepLicense;
-$StepArr[]=$StepClient;
-$StepArr[]=$StepDb;
-$StepArr[]=$StepRegister;
-$StepArr[]=$StepCompany;
-$StepArr[]=$StepConfirm;
-$StepArr[]=$StepProcess;
-$StepArr[]=$StepImport;
-$StepArr[]=$StepImport2;
-$StepArr[]=$StepCode;
-
-?>
+$StepArr[] = $StepLang;
+$StepArr[] = $StepLicense;
+$StepArr[] = $StepClient;
+$StepArr[] = $StepDb;
+$StepArr[] = $StepRegister;
+$StepArr[] = $StepCompany;
+$StepArr[] = $StepConfirm;
+$StepArr[] = $StepProcess;
+$StepArr[] = $StepImport;
+$StepArr[] = $StepImport2;
+$StepArr[] = $StepCode;

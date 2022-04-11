@@ -30,13 +30,13 @@ function CheckReg(Obj)
 </form>
 
 <?PostFORM();?>
-<input type="hidden" name="EditId" value="<?=$EditId?>">
-<input type="hidden" name="Mode" value="<?=$Mode?>">
+<input type="hidden" name="EditId" value="<?php echo $EditId?>">
+<input type="hidden" name="Mode" value="<?php echo $Mode?>">
 
 
 <table class=CaptionTable>
 <tr><td class=CaptionTd>
-<?=$TableCaption?>
+<?php echo $TableCaption?>
 </td></tr>
 </table>
 
@@ -45,45 +45,45 @@ function CheckReg(Obj)
 <table  class=FormTable>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['Name']?>
+<?php echo $Lang['Name']?>
 <?FormError("Name")?>
 </td><td class=FormRightTd>
-<input type=text name="EditArr[Name]" value="<?=$EditArr['Name']?>" style="width:100%;">
+<input type=text name="EditArr[Name]" value="<?php echo $EditArr['Name']?>" style="width:100%;">
 </td></tr>
 
 
 <tr><td class=FormLeftTd>
-<?=$Lang['KeyVarName']?>
+<?php echo $Lang['KeyVarName']?>
 <?FormError("KeyVar")?>
 </td><td class=FormRightTd>
-<input type=text name="EditArr[KeyVar]" value="<?=$EditArr['KeyVar']?>" style="width:100%;">
+<input type=text name="EditArr[KeyVar]" value="<?php echo $EditArr['KeyVar']?>" style="width:100%;">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['StatIgnor']?>
+<?php echo $Lang['StatIgnor']?>
 <?FormError("Ban")?>
 </td><td class=FormRightTd>
-<input type=checkbox name="EditArr[Ban]" value=1 <?=(($EditArr['Ban']==1)?"checked":"")?>>
+<input type=checkbox name="EditArr[Ban]" value=1 <?php echo (($EditArr['Ban'] == 1) ? 'checked' : '')?>>
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['RegExp']?><br>
+<?php echo $Lang['RegExp']?><br>
 <span class=ListDescr>
-<?=$Lang['RegExpDescr']?>
+<?php echo $Lang['RegExpDescr']?>
 </span>
 <?FormError("Regular")?>
 </td><td class=FormRightTd>
-<input type=text id="Regular" name="EditArr[Regular]" value="<?=htmlspecialchars($EditArr['Regular'])?>" style="width:100%;">
+<input type=text id="Regular" name="EditArr[Regular]" value="<?php echo htmlspecialchars($EditArr['Regular'])?>" style="width:100%;">
 </td></tr>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['RegExp2']?><br>
+<?php echo $Lang['RegExp2']?><br>
 <span class=ListDescr>
-<?=$Lang['RegExpDescr']?>
+<?php echo $Lang['RegExpDescr']?>
 </span>
 <?FormError("Regular")?>
 </td><td class=FormRightTd>
-<input type=text id="Regular2" name="EditArr[Regular2]" value="<?=htmlspecialchars($EditArr['Regular2'])?>" style="width:100%;">
+<input type=text id="Regular2" name="EditArr[Regular2]" value="<?php echo htmlspecialchars($EditArr['Regular2'])?>" style="width:100%;">
 </td></tr>
 
 </table>
@@ -92,8 +92,8 @@ function CheckReg(Obj)
 <tr><td class=SubmitLeftTd style="padding-left:10px;">
 
 </td><td class=SubmitRightTd>
-<input type=submit value="<?=$Lang['Save']?>">
-<input type=button value="<?=$Lang['CheckRegs']?>" onclick="return CheckReg();">
+<input type=submit value="<?php echo $Lang['Save']?>">
+<input type=button value="<?php echo $Lang['CheckRegs']?>" onclick="return CheckReg();">
 </td></tr>
 </table>
 

@@ -52,7 +52,7 @@ THE SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTY OF ANY KIND, INCL
 
 MISCELLANEOUS
 
-SG reserves the right to publish a selected list of users of the Software. SG reserves the right to change the terms of this Agreement at any time. 
+SG reserves the right to publish a selected list of users of the Software. SG reserves the right to change the terms of this Agreement at any time.
 
 Technical support will not be provided for third-party modifications to the Software including modifications to code, skins templates, and language packs to any license holder. If the Software is modified using a third-party modification instruction or otherwise, technical support may be refused to any license holder.
 

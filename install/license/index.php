@@ -16,7 +16,7 @@ function BtnForw(oCheck)
 <table  class=FormTable>
 
 <tr><td class=FormLeftTd>
-<B><?=$Lang['LicenseText']?>:</B>
+<B><?php echo $Lang['LicenseText']?>:</B>
 </td><td class=FormRightTd>
 
 
@@ -31,9 +31,9 @@ function BtnForw(oCheck)
 
 
 <tr><td class=FormLeftTd>
-<label for="IAgree">&nbsp;<?=$Lang['IAgree']?></label>
+<label for="IAgree">&nbsp;<?php echo $Lang['IAgree']?></label>
 </td><td class=FormRightTd>
-<input type=checkbox value=1 name="IAgree" id="IAgree" <?=(($IAgree==1)?"checked":"")?> onchange="BtnForw(this);" onclick="BtnForw(this);">
+<input type=checkbox value=1 name="IAgree" id="IAgree" <?php echo (($IAgree == 1) ? 'checked' : '')?> onchange="BtnForw(this);" onclick="BtnForw(this);">
 </td></tr>
 
 

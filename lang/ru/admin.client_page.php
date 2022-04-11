@@ -1,13 +1,13 @@
-<?
-$Lang['Title']="Выберите интересующий вас раздел";
-$Lang['VisitorsPath']="Пути пользователей по сайтам";
-$Lang['GroupByActions']="Разбивка по действиям";
-$Lang['GroupByCamp']="Разбивка по кампаниям";
-$Lang['Site']="Сайт";
+<?php
 
-$Lang['StatPeriod']="Статистика по сайтам за {DATE}";
+$Lang['Title'] = 'Выберите интересующий вас раздел';
+$Lang['VisitorsPath'] = 'Пути пользователей по сайтам';
+$Lang['GroupByActions'] = 'Разбивка по действиям';
+$Lang['GroupByCamp'] = 'Разбивка по кампаниям';
+$Lang['Site'] = 'Сайт';
 
-$Lang['Home']="Главная страница";
+$Lang['StatPeriod'] = 'Статистика по сайтам за {DATE}';
 
-$Lang['Online']="Онлайн";
-?>
+$Lang['Home'] = 'Главная страница';
+
+$Lang['Online'] = 'Онлайн';

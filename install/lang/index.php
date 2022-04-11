@@ -6,8 +6,8 @@ Choose language
 </td><td class=FormRightTd>
 
 <select name="CLang">
-<option value=en <?=(($CLang=="en")?"selected":"")?>>English</option>
-<option value=ru <?=(($CLang=="ru")?"selected":"")?>>Russian</option>
+<option value=en <?php echo (($CLang == 'en') ? 'selected' : '')?>>English</option>
+<option value=ru <?php echo (($CLang == 'ru') ? 'selected' : '')?>>Russian</option>
 </select>
 
 

@@ -12,19 +12,19 @@
 	$Row=$AgentsList[$i];?>
 
 	<tr>
-	<td  class=<?=$Row->_STYLE?>>
+	<td  class=<?php echo $Row->_STYLE?>>
 	<table width=100% cellpadding=0 cellspacing=0 border=0>
 	<tr><td width=100%><p>
 
 
-	<B><?=$Row->NAME?></B> (<?=$Row->EMAIL?>)<br>
-	<I><?=$Row->LOGIN?></I>
+	<B><?php echo $Row->NAME?></B> (<?php echo $Row->EMAIL?>)<br>
+	<I><?php echo $Row->LOGIN?></I>
 	</td><td>
 
-	<?
-	$nsButtons->Add("redo.gif", $Lang['MakeAdmin'], getURL("agents", "MakeAdmin=".$Row->ID));
-	$nsButtons->Dump();
-	?>
+	<?php
+    $nsButtons->Add('redo.gif', $Lang['MakeAdmin'], getURL('agents', 'MakeAdmin=' . $Row->ID));
+    $nsButtons->Dump();
+    ?>
 	</td></tr></table>
 
 	</td></tr>

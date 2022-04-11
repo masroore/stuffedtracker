@@ -3,12 +3,12 @@
 <div style="width:100%" class=ListDiv>
 <table class=CaptionTable>
 <tr><td class=CaptionTd>
-<?=$Lang['MoveToGrp']?>
+<?php echo $Lang['MoveToGrp']?>
 </td></tr>
 </table>
 <table  class=FormTable>
 <?GetFORM();?>
-<input type=hidden name="EditId" value="<?=$EditId?>">
+<input type=hidden name="EditId" value="<?php echo $EditId?>">
 
 <tr><td class=ReportSimpleTd2 style="padding-left:10px;padding-top:10px;">
 
@@ -19,16 +19,16 @@
 	if ($OptionColor=="ffffff") $OptionColor="f0f0f0";
 	else $OptionColor="ffffff";
 }?>
-<option value="<?=$MoveArr[$i]->ID?>" style="background:<?=$OptionColor?>;background-color:<?=$OptionColor?>;" <?=((ValidId($GrpId)&&$GrpId==$MoveArr[$i]->ID)?"selected":"")?>>
+<option value="<?php echo $MoveArr[$i]->ID?>" style="background:<?php echo $OptionColor?>;background-color:<?php echo $OptionColor?>;" <?php echo ((ValidId($GrpId) && $GrpId == $MoveArr[$i]->ID) ? 'selected' : '')?>>
 <?for($j=0;$j<$MoveArr[$i]->LEVEL;$j++) echo "&nbsp;&nbsp;"?>
-&gt; <?=$MoveArr[$i]->NAME?>
+&gt; <?php echo $MoveArr[$i]->NAME?>
 </option>
 <?}?>
 </select>
 
 </td></tr>
 <tr><td class=ReportSimpleTd2 style="padding-left:9px;">
-<input type=submit value="<?=$Lang['Move']?>">
+<input type=submit value="<?php echo $Lang['Move']?>">
 </td></tr>
 </form>
 </table>

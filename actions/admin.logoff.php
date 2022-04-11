@@ -1,5 +1,7 @@
-<?
-if (!$nsUser->Logged()) $nsProduct->Redir("default");
+<?php
+
+if (!$nsUser->Logged()) {
+    $nsProduct->Redir('default');
+}
 $nsUser->Logout();
-$nsProduct->Redir("login");
-?>
+$nsProduct->Redir('login');

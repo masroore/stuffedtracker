@@ -7,7 +7,7 @@
 
 <table class=CaptionTable>
 <tr><td class=CaptionTd>
-<?=$Lang['AddNewKey']?>
+<?php echo $Lang['AddNewKey']?>
 </td></tr>
 </table>
 
@@ -15,7 +15,7 @@
 <table  class=FormTable>
 
 <tr><td class=FormLeftTd>
-<?=$Lang['InsertKey']?>
+<?php echo $Lang['InsertKey']?>
 </td><td class=FormRightTd>
 <textarea rows=10 name=NewKey wrap=hard></textarea>
 </td></tr>
@@ -26,7 +26,7 @@
 <table class=SubmitTable>
 <tr><td class=SubmitLeftTd>
 </td><td class=SubmitRightTd>
-<input type=submit value="<?=$Lang['Save']?>">
+<input type=submit value="<?php echo $Lang['Save']?>">
 </td></tr>
 </table>
 

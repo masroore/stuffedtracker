@@ -1,4 +1,5 @@
 <?php
+
 //
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
@@ -18,22 +19,21 @@
 //
 // $Id: mail.php,v 1.3 2005/07/04 09:37:07 shalmoo Exp $
 
-require_once(SYS.'/system/class/email/mail.php');
+require_once SYS . '/system/class/email/mail.php';
 
 /**
  * internal PHP-mail() implementation of the PEAR Mail:: interface.
- * @access public
- * @package Mail
+ *
  * @version $Revision: 1.3 $
  */
- 
-class Mail_mail extends Mail
+class mail_mail extends Mail
 {
     /**
      * Any arguments to pass to the mail() function.
+     *
      * @var string
      */
-    var $_params = '';
+    public $_params = '';
 
     /**
      * Constructor.
@@ -41,11 +41,9 @@ class Mail_mail extends Mail
      * Instantiates a new Mail_mail:: object based on the parameters
      * passed in.
      *
-     * @param string $params Extra arguments for the mail() function.
-     *
-     * @access public
+     * @param string $params extra arguments for the mail() function
      */
-    function Mail_mail($params = '')
+    public function __construct($params = '')
     {
         /*
          * The other mail implementations accept parameters as arrays.  In the
@@ -53,7 +51,7 @@ class Mail_mail extends Mail
          * parameter arguments.
          */
         if (is_array($params)) {
-            $this->_params = join(' ', $params);
+            $this->_params = implode(' ', $params);
         } else {
             $this->_params = $params;
         }
@@ -66,39 +64,40 @@ class Mail_mail extends Mail
         $this->sep = (strstr(PHP_OS, 'WIN')) ? "\r\n" : "\n";
     }
 
-	/**
+    /**
      * Implements Mail_mail::send() function using php's built-in mail()
      * command.
-     * 
+     *
      * @param mixed $recipients Either a comma-seperated list of recipients
      *              (RFC822 compliant), or an array of recipients,
      *              each RFC822 valid. This may contain recipients not
      *              specified in the headers, for Bcc:, resending
      *              messages, etc.
-     *
      * @param array $headers The array of headers to send with the mail, in an
      *              associative array, where the array key is the
      *              header name (ie, 'Subject'), and the array value
      *              is the header value (ie, 'test'). The header
      *              produced from those values would be 'Subject:
      *              test'.
+     * @param string $body the full text of the message body, including any
+     *               Mime parts, etc
      *
-     * @param string $body The full text of the message body, including any
-     *               Mime parts, etc.
-     *
-     * @return mixed Returns true on success, or a PEAR_Error
+     * @return mixed returns true on success, or a PEAR_Error
      *               containing a descriptive error message on
-     *               failure.
-     * @access public
-     */	
-    function send($recipients, $headers, $body)
+     *               failure
+     */
+    public function send($recipients, $headers, $body)
     {
         // if we're passed an array of recipients, implode it.
         if (is_array($recipients)) {
             $recipients = implode(', ', $recipients);
         }
-				if(isset($headers['To'])) unset($headers['To']);
-				if(isset($headers['to'])) unset($headers['to']);
+        if (isset($headers['To'])) {
+            unset($headers['To']);
+        }
+        if (isset($headers['to'])) {
+            unset($headers['to']);
+        }
         // get the Subject out of the headers array so that we can
         // pass it as a seperate argument to mail().
         $subject = '';
@@ -108,9 +107,8 @@ class Mail_mail extends Mail
         }
 
         // flatten the headers out.
-        list(,$text_headers) = Mail::prepareHeaders($headers);
+        [, $text_headers] = Mail::prepareHeaders($headers);
 
         return mail($recipients, $subject, $body, $text_headers, $this->_params);
     }
-
 }
